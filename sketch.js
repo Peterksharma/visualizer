@@ -88,6 +88,19 @@ function mouseClicked() {
     }
 }
 
+function touchStarted() {
+    if (song.isPlaying()) {
+        song.pause();
+        noLoop();
+    } else {
+        song.play();
+        loop();
+    }
+    // prevent default
+    return false;
+}
+
+
 class Particle {
     constructor() {
         this.pos = p5.Vector.random2D().mult(250)

@@ -27,6 +27,9 @@ function setup() {
 function draw() {
     background(0)
 
+    if (mouseIsPressed && touches.length == 0) {
+        handlePlayPause();
+    }
 
     translate(width / 2, height / 2)
 
@@ -88,7 +91,26 @@ function mouseClicked() {
     }
 }
 
+// function touchStarted() {
+//     if (song.isPlaying()) {
+//         song.pause();
+//         noLoop();
+//     } else {
+//         song.play();
+//         loop();
+//     }
+//     // prevent default
+//     return false;
+// }
+
 function touchStarted() {
+    if (touches.length > 0) {
+        handlePlayPause();
+    }
+    return false
+}
+
+function handlePlayPause() {
     if (song.isPlaying()) {
         song.pause();
         noLoop();
@@ -96,8 +118,6 @@ function touchStarted() {
         song.play();
         loop();
     }
-    // prevent default
-    return false;
 }
 
 
